@@ -2,28 +2,25 @@ import Button from "./Button";
 
 const Hero = () => {
   return (
-    <div className=" flex flex-wrap place-content-between bg-gradient-to-r from-gray-700 via-gray-900 to-black h-1/2 pt-36 m-0 w-full p-36">
-      <div className="flex flex-col flex-1">
-        <span className="font-sans font-bold text-[40px] text-white">
+    <div className="flex justify-center items-center place-space-around bg-gradient-to-r from-gray-700 via-gray-900 to-black m-0 pt-[160px] pb-[100px]  ">
+      
+      <div className="flex flex-col flex-1 m-0">
+        <span className="font-sans font-bold text-[40px] text-white text-center">
           <h1>Capture ideas, shape your thoughts.</h1>
         </span>
         <span className="font-sans font-bold text-[50px] text-center text-white ">
           <h1>Welcome to Notecraft.</h1>
+          
+        </span>
+        <span className='font-sans font-bold text-[22px] text-center '>
+        <Button to="/a">Get Started!</Button>
         </span>
       </div>
-      <div className="flex flex-col flex-1">
-        <span className="font-sans text-[18px] text-white">
-          This app consists of a note-keeper where you can create your own notes
-          and save them. 
-          <br/>
-          Maybe it's an important thought, a shopping list, or
-          even a cooking recipe your grandma taught you. Anything—you can save
-          it in this app. You can even add categories to them and file them away
-          when you don't need them.
-        </span>
-        <span className="text-center">
-            <Button to="/a">Get Started!</Button>
-        </span>
+      <div className="flex flex-1 justify-center m-0">
+        <div className='flex flex-1 2xl:w-[540px] 2xl:h-[540px] md:w-[500px] md:h-[500px] justify-center '>
+        <img src='hero-svg.svg' alt= 'notecraft' ></img>
+        </div>
+          
       </div>
     </div>
   );

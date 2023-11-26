@@ -25,7 +25,16 @@ const About = () => {
           <span className="font-mono text-4xl text-center mt-5">
             <h1>About Notecraft</h1>
           </span>
-          <span className="font-sans text-xl m-5 text-center">
+          <span className='font-sans text-xl m-5 text-left'>
+          This app consists of a note-keeper where you can create your own notes
+          and save them. 
+          <br/>
+          Maybe it's an important thought, a shopping list, or
+          even a cooking recipe your grandma taught you. Anything—you can save
+          it in this app. You can even add categories to them and file them away
+          when you don't need them.
+        </span>
+          <span className="font-sans text-xl m-5 text-left">
             This is an application made by me, Jeremias Oviedo, as part of a
             small project that I'm working on. This project doesn't have any
             other value than my own learning and enjoyment, and its purpose is
