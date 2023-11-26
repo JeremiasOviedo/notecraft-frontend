@@ -11,7 +11,7 @@ import AwsIcon from "./icons/AwsIcon";
 const Technologies = () => {
   return (
   
-  <div className='flex flex-col m-16'>
+  <div className='flex flex-col m-16 snap-center'>
     <span className='text-white text-6xl font-bold font-sans text-center'>
         <h1>Technologies</h1>
     </span>

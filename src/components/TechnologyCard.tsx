@@ -12,13 +12,13 @@ const TechnologyCard: React.FC<TechnologyCardProps> = ({ icon, text }) => {
   return (
     <div className ='flex flex-col justify-center items-center'>
     <div
-      className={`border-8 rounded-2xl border-white w-48 h-48  hover:border-[#3C6997] fill-white p-6 flex ${
+      className={`border-8 rounded-2xl border-white w-48 h-48  hover:border-[#3C6997] p-6 flex text-white ${
         isHovered ? 'animate-pulse' : ''
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {icon}
+     {icon}
    
     </div>
     <div

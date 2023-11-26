@@ -1,7 +1,7 @@
 const NextJsIcon = () => {
   return (
     <svg
-      className="fill-white hover:fill-[#3C6997]"
+      className="fill-current hover:fill-[#3C6997]"
       viewBox="0 0 15 15"
       xmlns="http://www.w3.org/2000/svg"
     >

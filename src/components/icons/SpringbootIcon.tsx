@@ -1,6 +1,6 @@
 const SpringbootIcon = () => {
   return (
-    <svg className='fill-white hover:fill-[#3C6997]'viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <svg className='fill-current hover:fill-[#3C6997]'viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
       <g
         id="SVGRepo_tracerCarrier"
