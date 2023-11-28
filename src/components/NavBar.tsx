@@ -41,14 +41,18 @@ const NavBar: React.FC = () => {
       </div>
 
       <ul className="hidden md:flex">
-        {links.map(({ id, link }) => (
-          <li
-            key={id}
-            className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline text-left"
-          >
-            <Link href={"#" + link}> {link} </Link>
-          </li>
-        ))}
+        <li className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline text-left">
+          <Link href="/">Home</Link>
+        </li>
+        <li className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline text-left">
+          <Link href="/#about">About</Link>
+        </li>
+        <li className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline text-left">
+          <Link href="/auth">Sign Up</Link>
+        </li>
+        <li className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline text-left">
+          <Link href="/auth">Log In</Link>
+        </li>
       </ul>
 
       <div
@@ -60,16 +64,18 @@ const NavBar: React.FC = () => {
 
       {nav && (
         <ul className="flex flex-col mt-[80px] justify-top items-left absolute top-0 left-0 w-full h-[400px] bg-gradient-to-r from-gray-700 via-gray-900 to-black text-gray-500">
-          {links.map(({ id, link }) => (
-            <li
-              key={id}
-              className="mx-4 cursor-pointer capitalize py-6 text-xl"
-            >
-              <Link onClick={() => setNav(!nav)} href={"#" + link}>
-                {link}
-              </Link>
-            </li>
-          ))}
+          <li className="mx-4 cursor-pointer capitalize py-6 text-xl">
+            <Link href='/'>Home</Link>
+          </li>
+          <li className="mx-4 cursor-pointer capitalize py-6 text-xl">
+            <Link href='/#about'>About</Link>
+          </li>
+          <li className="mx-4 cursor-pointer capitalize py-6 text-xl">
+            <Link href='/auth'>Sign Up</Link>
+          </li>
+          <li className="mx-4 cursor-pointer capitalize py-6 text-xl">
+            <Link href='/auth'>Log in</Link>
+          </li>
         </ul>
       )}
     </div>

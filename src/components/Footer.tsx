@@ -4,7 +4,7 @@ import { FaUser } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div id='contact' className="flex flex-col bg-gradient-to-r from-gray-700 via-gray-900 to-black h-36 mt-10 pt-10 justify-between">
+    <div id='contact' className="flex flex-col bg-gradient-to-r from-gray-700 via-gray-900 to-black h-36 mt-10 pt-10 justify-between  w-full">
     <span className='flex text-white text-5xl justify-center gap-6'>
         <a href='https://www.linkedin.com/in/jeremiasoviedo' target='_blank'><FaLinkedin/></a>
         <a href='https://www.github.com/jeremiasoviedo' target='_blank'><FaGithub/></a>

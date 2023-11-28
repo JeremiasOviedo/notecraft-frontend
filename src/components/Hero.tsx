@@ -16,7 +16,7 @@ const Hero = () => {
           <h1>Welcome to Notecraft.</h1>
         </span>
         <span className="font-sans font-bold text-[22px] text-center mt-8">
-          <Button to="/a">Get Started!</Button>
+          <Button to="/auth">Get Started!</Button>
         </span>
       </div>
     </div>
