@@ -23,7 +23,7 @@ const NavBar: React.FC = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center w-full h-20 px-28 text-white bg-gradient-to-r from-gray-700 via-gray-900 to-black fixed nav">
+    <div className="flex justify-between items-center px-2 w-full h-20  text-white bg-gradient-to-r from-gray-700 via-gray-900 to-black fixed nav">
       <div>
         <h1 className="text-3xl font-sans font-bold ml-2">
           <a
@@ -44,7 +44,7 @@ const NavBar: React.FC = () => {
         {links.map(({ id, link }) => (
           <li
             key={id}
-            className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline"
+            className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline text-left"
           >
             <Link href={"#" + link}> {link} </Link>
           </li>
@@ -63,7 +63,7 @@ const NavBar: React.FC = () => {
           {links.map(({ id, link }) => (
             <li
               key={id}
-              className="mx-28 cursor-pointer capitalize py-6 text-xl"
+              className="mx-4 cursor-pointer capitalize py-6 text-xl"
             >
               <Link onClick={() => setNav(!nav)} href={"#" + link}>
                 {link}

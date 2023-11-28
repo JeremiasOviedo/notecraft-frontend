@@ -11,12 +11,12 @@ import AwsIcon from "./icons/AwsIcon";
 const Technologies = () => {
   return (
   
-  <div className='flex flex-col m-16 snap-center'>
-    <span className='text-white text-6xl font-bold font-sans text-center'>
+  <div className='flex flex-col p-2'>
+    <span className='text-white text-5xl font-bold font-sans text-center'>
         <h1>Technologies</h1>
     </span>
 
-<div className='flex flex-1 ml-28 mr-28 mt-16 place-space-around gap-12 shrink-0 flex-wrap justify-center'>
+<div className='flex mt-10 gap-2 shrink-0 justify-center flex-wrap lg:gap-10 sm:gap-6'>
     <TechnologyCard icon= {<NextJsIcon/>} text='NextJs'/>
     <TechnologyCard icon= {<TypescriptIcon/>} text='Typescript'/>
     <TechnologyCard icon= {<TailwindIcon/>} text='Tailwind'/>

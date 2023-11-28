@@ -1,5 +1,5 @@
 import React from "react";
-import { Hero, About, Technologies, NavBar } from "../components";
+import { Hero, About, Technologies, NavBar, Footer } from "../components";
 
 const Home: React.FC = () => {
   return (
@@ -13,6 +13,7 @@ const Home: React.FC = () => {
           <Hero />
           <About />
           <Technologies />
+          <Footer />
         </div>
       </main>
   );

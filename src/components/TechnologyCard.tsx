@@ -10,9 +10,9 @@ const TechnologyCard: React.FC<TechnologyCardProps> = ({ icon, text }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className ='flex flex-col justify-center items-center'>
+    <div className ='flex flex-col justify-center items-center m-0'>
     <div
-      className={`border-8 rounded-2xl border-white w-48 h-48  hover:border-[#3C6997] p-6 flex text-white ${
+      className={`border-8 mt-2 rounded-2xl border-white w-28 h-28  m-0 hover:border-[#3C6997] p-2 flex text-white ${
         isHovered ? 'animate-pulse' : ''
       }`}
       onMouseEnter={() => setIsHovered(true)}
@@ -22,7 +22,7 @@ const TechnologyCard: React.FC<TechnologyCardProps> = ({ icon, text }) => {
    
     </div>
     <div
-        className={` bg-transparent p-6 opacity-0 transition-opacity font-mono font-bold text-[#3C6997] text-[26px] ${
+        className={` hidden xl:flex bg-transparent pt-6 opacity-0 transition-opacity font-mono font-bold text-[#3C6997] text-[26px] ${
           isHovered ? 'opacity-100 animate-pulse' : ''
         }`}
       >
