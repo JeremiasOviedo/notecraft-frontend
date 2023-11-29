@@ -4,7 +4,7 @@ const About = () => {
       <div className=" flex flex-col flex-grow-0 shadow-2xl 2xl:mx-60 self-center 2xl:flex-row lg:flex-row">
         <div
           className="flex grow w-full p-5 text-white justify-between gap-0"
-          style={{ backgroundImage: "url(background.jpg)" }}
+          style={{ backgroundImage: "url(/background.jpg)" }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

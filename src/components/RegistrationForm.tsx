@@ -5,6 +5,7 @@ import type { FieldValues } from "react-hook-form";
 import { FaSpinner } from "react-icons/fa";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const signUpSchema = z
   .object({
@@ -32,11 +33,12 @@ const signUpSchema = z
 const RegistrationForm = () => {
   const router = useRouter();
 
+  const [serverError, setServerError] = useState<string | null>(null);
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    reset,
   } = useForm({
     resolver: zodResolver(signUpSchema),
   });
@@ -67,7 +69,16 @@ const RegistrationForm = () => {
 
       const jsonResponse = await response.json();
       console.log(jsonResponse);
-      router.push("/");
+
+      if (response.status === 200) {
+        router.push("/");
+      } else {
+
+        for (const [key, value] of Object.entries(jsonResponse)){
+          setServerError(`${value}`)
+        }
+        
+      }
     } catch (error) {
       console.error(error);
     }
@@ -79,7 +90,7 @@ const RegistrationForm = () => {
       className="w-screen h-auto bg-transparent p-4 flex items-center justify-center my-18"
     >
       <div className="bg-white sm:max-w-md w-full flex flex-col mt-28 p-4 gap-4">
-        <div className="sm:text-3xl text-2xl font-semibold text-center text-sky-400 mb-12">
+        <div className="sm:text-3xl text-2xl font-bold text-center text-sky-400 mb-12 mt-4">
           Sign Up
         </div>
         <div className="flex flex-col gap-6">
@@ -112,6 +123,7 @@ const RegistrationForm = () => {
               className="focus:outline-none border-b w-full pb-2 border-sky-400 placeholder-gray-500"
               placeholder="Email Adress"
             />
+            
             {errors.email && (
               <p className="text-red-500 mt-3">{`${errors.email.message}`}</p>
             )}
@@ -163,6 +175,11 @@ const RegistrationForm = () => {
           {errors.conditions && (
             <p className="text-red-500">{`${errors.conditions.message}`}</p>
           )}
+          {serverError && (
+              <div className="text-red-500 text-center">
+                {serverError}
+              </div>
+            )}
           <div className="flex justify-center my-6">
             <button
               type="submit"
@@ -178,7 +195,7 @@ const RegistrationForm = () => {
           </div>
           <div className="flex justify-center ">
             <p className="text-gray-500">Already have an account? </p>
-            <a href="" className="text-sky-600 pl-2">
+            <a href="/auth/login" className="text-sky-600 pl-2">
               {" "}
               Sign In
             </a>

@@ -4,6 +4,7 @@ import Technologies from './Technologies';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import RegistrationForm from './RegistrationForm';
+import LoginForm from './LoginForm';
 
 export{
     Hero,
@@ -11,5 +12,6 @@ export{
     Technologies,
     NavBar,
     Footer,
-    RegistrationForm
+    RegistrationForm,
+    LoginForm
 }

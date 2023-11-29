@@ -48,10 +48,10 @@ const NavBar: React.FC = () => {
           <Link href="/#about">About</Link>
         </li>
         <li className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline text-left">
-          <Link href="/auth">Sign Up</Link>
+          <Link href="/auth/register">Sign Up</Link>
         </li>
         <li className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-white duration-200 link-underline text-left">
-          <Link href="/auth">Log In</Link>
+          <Link href="/auth/login">Log In</Link>
         </li>
       </ul>
 
@@ -71,10 +71,10 @@ const NavBar: React.FC = () => {
             <Link href='/#about'>About</Link>
           </li>
           <li className="mx-4 cursor-pointer capitalize py-6 text-xl">
-            <Link href='/auth'>Sign Up</Link>
+            <Link href='/auth/register'>Sign Up</Link>
           </li>
           <li className="mx-4 cursor-pointer capitalize py-6 text-xl">
-            <Link href='/auth'>Log in</Link>
+            <Link href='/auth/login'>Log in</Link>
           </li>
         </ul>
       )}
