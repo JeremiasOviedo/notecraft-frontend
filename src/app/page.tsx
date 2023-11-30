@@ -1,5 +1,8 @@
 import React from "react";
-import { Hero, About, Technologies, NavBar, Footer } from "../components";
+import { Hero, About, Technologies,Footer } from "../components";
+import dynamic from 'next/dynamic'
+ 
+const NavBar = dynamic(() => import('../components/NavBar'), { ssr: false })
 
 const Home: React.FC = () => {
   return (

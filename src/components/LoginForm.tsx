@@ -7,6 +7,7 @@ import { FaSpinner } from "react-icons/fa";
 import { FaFacebookF, FaGoogle, FaApple } from "react-icons/fa";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "./AuthProvider";
 
 const logInSchema = z.object({
   email: z.string().email(),
@@ -19,6 +20,7 @@ type loginDTO = {
 };
 
 const LoginForm = () => {
+  const { login } = useAuth();
   const router = useRouter();
 
   const {
@@ -50,6 +52,7 @@ const LoginForm = () => {
       console.log(jsonResponse);
 
       if (response.status === 200) {
+        login(jsonResponse.jwt)
         router.push("/");
       } else {
         setServerError(jsonResponse.message);

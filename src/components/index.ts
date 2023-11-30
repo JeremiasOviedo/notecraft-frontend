@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 import RegistrationForm from './RegistrationForm';
 import LoginForm from './LoginForm';
+import AuthProvider from './AuthProvider';
 
 export{
     Hero,
@@ -13,5 +14,6 @@ export{
     NavBar,
     Footer,
     RegistrationForm,
-    LoginForm
+    LoginForm,
+    AuthProvider
 }

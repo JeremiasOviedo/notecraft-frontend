@@ -1,6 +1,11 @@
+"use client";
 import Button from "./Button";
+import { useAuth } from "./AuthProvider";
+import React from "react";
 
-const Hero = () => {
+const Hero: React.FC = () => {
+  const token = useAuth();
+
   return (
     <div className="flex flex-col  lg:flex-row-reverse lg:flex-1 2xl:px-44 justify-center items-center bg-gradient-to-r from-gray-700 via-gray-900 to-black m-0 pt-[80px] pb-[60px] px-2 ">
       <div className="flex justify-center m-0">
@@ -16,7 +21,7 @@ const Hero = () => {
           <h1>Welcome to Notecraft.</h1>
         </span>
         <span className="font-sans font-bold text-[22px] text-center mt-8">
-          <Button to="/auth">Get Started!</Button>
+            <Button to="/auth">Get Started!</Button>
         </span>
       </div>
     </div>
