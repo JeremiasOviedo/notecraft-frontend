@@ -7,6 +7,7 @@ import RegistrationForm from "./RegistrationForm";
 import LoginForm from "./LoginForm";
 import AuthProvider from "./AuthProvider";
 import DashboardSidebar from "./DashboardSidebar";
+import DashboardContent from "./DashboardContent";
 
 export {
   Hero,
@@ -18,4 +19,5 @@ export {
   LoginForm,
   AuthProvider,
   DashboardSidebar,
+  DashboardContent
 };

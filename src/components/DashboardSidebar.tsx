@@ -1,17 +1,31 @@
-import { SiDeepnote } from "react-icons/si";
+"use client";
 
-const DashboardSidebar = () => {
+import { SiDeepnote } from "react-icons/si";
+import React, { useState } from "react";
+import { FaBars, FaTimes,FaChevronRight, FaChevronLeft } from "react-icons/fa";
+
+
+const DashboardSidebar: React.FC = () => {
+  const [nav, setNav] = useState(false);
+
   return (
     <div className="flex flex-1">
+     
+     {nav && (
       <div className="md:flex md:w-64 md:flex-col">
-        <div className="flex flex-col flex-grow pt-5 overflow-y-auto bg-white">
-          <a href="/">
+        <div className="flex flex-col flex-grow pt-5 overflow-y-auto bg-white">         
             <div className="flex items-center justify-start flex-shrink-0 px-6 gap-4 text-2xl font-bold text-gray-800">
               {" "}
               <SiDeepnote className="text-[#3C6997]" />
               Notecraft
-            </div>
-          </a>
+              
+              <div
+                onClick={() => setNav(!nav)}
+                className="cursor-pointer text-gray-800 pl-6"
+              >
+                {nav ? <FaChevronLeft/> : <FaChevronRight/>}
+              </div>
+            </div>      
           <div className="px-4 mt-8">
             <label htmlFor="" className="sr-only">
               {" "}
@@ -142,8 +156,16 @@ const DashboardSidebar = () => {
             </div>
           </div>
         </div>
+      </div>) }
+      {!nav && (
+        <div
+        onClick={() => setNav(!nav)}
+        className="cursor-pointer p-4  text-gray-800 flex justify-center text-2xl "
+      >
+        {nav ? <FaChevronLeft/> : <FaChevronRight/>}
       </div>
-
+      )}
+      
     </div>
   );
 };
