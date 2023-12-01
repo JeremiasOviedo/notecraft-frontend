@@ -1,10 +1,8 @@
 "use client";
 import Button from "./Button";
-import { useAuth } from "./AuthProvider";
 import React from "react";
 
 const Hero: React.FC = () => {
-  const token = useAuth();
 
   return (
     <div className="flex flex-col  lg:flex-row-reverse lg:flex-1 2xl:px-44 justify-center items-center bg-gradient-to-r from-gray-700 via-gray-900 to-black m-0 pt-[80px] pb-[60px] px-2 ">

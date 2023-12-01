@@ -47,13 +47,11 @@ const LoginForm = () => {
           "Content-type": "application/json",
         },
       });
-
       const jsonResponse = await response.json();
-      console.log(jsonResponse);
 
       if (response.status === 200) {
         login(jsonResponse.jwt)
-        router.push("/");
+        router.push("/dashboard");
       } else {
         setServerError(jsonResponse.message);
       }
@@ -75,13 +73,13 @@ const LoginForm = () => {
           Log in with your social media
         </div>
         <div className="w-auto flex flex-row justify-center mt-4 gap-4">
-          <button className="bg-gradient-to-r from-gray-700 via-gray-900 to-black hover:bg-blue-300 hover:text-blue-300 text-white font-bold rounded-full w-12 h-12 text-center justify-center flex items-center">
+          <button className="bg-gradient-to-r from-gray-700 via-gray-900 to-black hover:bg-blue-300 text-white font-bold rounded-full w-12 h-12 text-center justify-center flex items-center">
             <FaFacebookF className="text-3xl" />
           </button>
-          <button className="bg-gradient-to-r from-gray-700 via-gray-900 to-black hover:bg-blue-300 hover:text-blue-300 text-white font-bold rounded-full w-12 h-12 text-center justify-center flex items-center">
+          <button className="bg-gradient-to-r from-gray-700 via-gray-900 to-black hover:bg-blue-300  text-white font-bold rounded-full w-12 h-12 text-center justify-center flex items-center">
             <FaGoogle className="text-3xl" />
           </button>
-          <button className="bg-gradient-to-r from-gray-700 via-gray-900 to-black hover:bg-blue-300 hover:text-blue-300 text-white font-bold rounded-full w-12 h-12 text-center justify-center flex items-center">
+          <button className="bg-gradient-to-r from-gray-700 via-gray-900 to-black hover:bg-blue-300  text-white font-bold rounded-full w-12 h-12 text-center justify-center flex items-center">
             <FaApple className="text-3xl" />
           </button>
         </div>
