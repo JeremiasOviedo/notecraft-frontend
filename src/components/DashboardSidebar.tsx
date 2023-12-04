@@ -11,7 +11,7 @@ const DashboardSidebar: React.FC = () => {
   return (
     <div className="flex flex-1">
      
-     {nav && (
+     {!nav && (
       <div className="md:flex md:w-64 md:flex-col">
         <div className="flex flex-col flex-grow pt-5 overflow-y-auto bg-white">         
             <div className="flex items-center justify-start flex-shrink-0 px-6 gap-4 text-2xl font-bold text-gray-800">
@@ -157,7 +157,7 @@ const DashboardSidebar: React.FC = () => {
           </div>
         </div>
       </div>) }
-      {!nav && (
+      {nav && (
         <div
         onClick={() => setNav(!nav)}
         className="cursor-pointer p-4  text-gray-800 flex justify-center text-2xl "

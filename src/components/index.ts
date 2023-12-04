@@ -19,5 +19,5 @@ export {
   LoginForm,
   AuthProvider,
   DashboardSidebar,
-  DashboardContent
+  DashboardContent,
 };
