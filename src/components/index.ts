@@ -8,6 +8,7 @@ import LoginForm from "./LoginForm";
 import AuthProvider from "./AuthProvider";
 import DashboardSidebar from "./DashboardSidebar";
 import DashboardContent from "./DashboardContent";
+import DeleteNoteModal from "./DeleteNoteModal";
 
 export {
   Hero,
@@ -20,4 +21,5 @@ export {
   AuthProvider,
   DashboardSidebar,
   DashboardContent,
+  DeleteNoteModal
 };
