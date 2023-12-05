@@ -160,7 +160,7 @@ const DashboardSidebar: React.FC = () => {
       {nav && (
         <div
           onClick={() => setNav(!nav)}
-          className="cursor-pointer p-4  text-gray-800 flex justify-center text-2xl"
+          className="cursor-pointer p-4  text-gray-800 flex justify-center text-2xl h-fit absolute"
         >
           {nav ?  <FaChevronRight  className='text-white' />  : <FaChevronLeft/>}
         </div>

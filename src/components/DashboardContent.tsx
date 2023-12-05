@@ -142,7 +142,7 @@ const DashboardContent = ({
         </div>
       </div>
 
-      <div className="h-full w-100 bg-transparent p-0 overflow-auto px-2 items-center align-center flex flex-col mt-2">
+      <div className="h-full w-100 bg-transparent p-0 px-2 overflow-auto items-center align-center flex flex-col mt-2">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 lg:flex-row w-full gap-8 flex-shrink flex-wrap justify-start">
           {listNotes}
         </div>
