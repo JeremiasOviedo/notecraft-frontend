@@ -34,7 +34,7 @@ const About = () => {
           and save them. 
           <br/>
           <br/>
-          Maybe it's an important thought, a shopping list, or
+          Maybe its an important thought, a shopping list, or
           even a cooking recipe your grandma taught you. Anything—you can save
           it in this app. You can even add categories to them and file them away
           when you don't need them.
