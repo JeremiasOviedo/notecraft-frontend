@@ -5,10 +5,9 @@ import { z } from "zod";
 import type { FieldValues } from "react-hook-form";
 import {
   useEditor,
-  EditorProvider,
-  useCurrentEditor,
   EditorContent,
 } from "@tiptap/react";
+import type {Editor} from "@tiptap/react"
 import Underline from "@tiptap/extension-underline";
 import ListItem from "@tiptap/extension-list-item";
 import BulletList from "@tiptap/extension-bullet-list";
@@ -34,7 +33,7 @@ interface CreateNotePros {
   note: Note;
   open: boolean;
   closeCreateNote: () => void;
-  updateNotes: () => void
+  updateNotes: () => void;
 }
 
 const CreateNoteComponent = ({
@@ -83,7 +82,7 @@ const CreateNoteComponent = ({
     },
   });
 
-  const handleContentChange = ({ editor }) => {
+  const handleContentChange = ({ editor }: { editor: Editor | null }) => {
     setValue("content", editor?.getText());
   };
 
@@ -96,7 +95,6 @@ const CreateNoteComponent = ({
   };
 
   const onSubmit = async (data: FieldValues) => {
-    
     const newNote: NoteCreationDto = {
       title: data.title,
       content: data.content,
@@ -106,14 +104,14 @@ const CreateNoteComponent = ({
     try {
       var url: string = "";
 
-      if (!isNaN(note.idNote) ) {
-        url = `http://localhost:8000/notes/${note.idNote}`;
+      if (!isNaN(note.idNote)) {
+        url = `http://54.233.123.195:8000/notes/${note.idNote}`;
       } else {
-        url = "http://localhost:8000/notes";
+        url = "http://54.233.123.195:8000/notes";
       }
 
-      console.log("using url: ", url)
-      console.log("sending data: " , newNote)
+      console.log("using url: ", url);
+      console.log("sending data: ", newNote);
 
       const response = await fetch(url, {
         method: "POST",
@@ -124,14 +122,11 @@ const CreateNoteComponent = ({
         },
       });
 
-      if(response.ok){
+      if (response.ok) {
         const jsonResponse = await response.json();
-        updateNotes()
+        updateNotes();
         closeCreateNote();
       }
-
-      
-
     } catch (error) {
       console.log(error);
     }
@@ -175,7 +170,7 @@ const CreateNoteComponent = ({
                 {isSubmitting === false ? (
                   "Save"
                 ) : (
-                  <FaSpinner className="animate-spin" />
+                  <FaSpinner className="animate-spin text-2xl" />
                 )}
               </button>
             </div>

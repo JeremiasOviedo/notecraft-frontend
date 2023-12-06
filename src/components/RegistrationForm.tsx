@@ -6,7 +6,7 @@ import { FaSpinner } from "react-icons/fa";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
+import { useAuth } from "./AuthProvider";
 
 const signUpSchema = z
   .object({
@@ -32,6 +32,7 @@ const signUpSchema = z
   });
 
 const RegistrationForm = () => {
+  const { login } = useAuth();
   const router = useRouter();
 
   const [serverError, setServerError] = useState<string | null>(null);
@@ -60,7 +61,7 @@ const RegistrationForm = () => {
         password: data.password,
       };
 
-      const response = await fetch("http://localhost:8000/auth/register", {
+      const response = await fetch("http://54.233.123.195:8000/auth/register", {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -71,7 +72,9 @@ const RegistrationForm = () => {
       const jsonResponse = await response.json();
       console.log(jsonResponse);
 
-      if (response.status === 200) {
+      if (response.ok) {
+        login(jsonResponse.jwt)
+
         router.push("/");
       } else {
 

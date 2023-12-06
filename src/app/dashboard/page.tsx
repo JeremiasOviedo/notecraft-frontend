@@ -48,7 +48,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
   const getNotes = useEffect(() => {
     const getNotes = async () => {
       try {
-        const response = await fetch(`http://localhost:8000${currentPage}`, {
+        const response = await fetch(`http://54.233.123.195:8000${currentPage}`, {
           method: "GET",
           headers: {
             authorization: `Bearer ${token}`,
@@ -59,7 +59,6 @@ const Dashboard: React.FC<DashboardProps> = () => {
           const jsonResponse = await response.json();
           setNotes(jsonResponse.content);
           setLinks(jsonResponse.links);
-          console.log(jsonResponse);
         } else {
           console.log("ocurrio un error");
         }

@@ -2,28 +2,35 @@
 
 import { SiDeepnote } from "react-icons/si";
 import React, { useState } from "react";
-import { FaBars, FaTimes, FaChevronRight, FaChevronLeft } from "react-icons/fa";
-import type { Note, NoteCreationDto } from "@/app/dashboard/page";
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+import { BiLogOutCircle } from "react-icons/bi";
+import type { Note } from "@/app/dashboard/page";
+import { useAuth } from "./AuthProvider";
+import { useRouter } from "next/navigation";
 
 interface SidebarProps {
-openCreateNote : (note: Note) => void;
+  openCreateNote: (note: Note) => void;
 }
 
-const DashboardSidebar = ({openCreateNote}:SidebarProps) => {
+const DashboardSidebar = ({ openCreateNote }: SidebarProps) => {
   const [nav, setNav] = useState(false);
+  const { logout } = useAuth();
+  const router = useRouter();
 
-const emptyNote : Note ={
-  idNote: Number.NaN,
-  title:'Create Note',
-  content: 'Create Content',
-  categories: [{idCategory: 1, categoryName:"general"}],
-  isActive: false,
-  creationDate: ' ',
-  updateDate: ' ',
+  const emptyNote: Note = {
+    idNote: Number.NaN,
+    title: "Create Note",
+    content: "Create Content",
+    categories: [{ idCategory: 1, categoryName: "general" }],
+    isActive: false,
+    creationDate: " ",
+    updateDate: " ",
+  };
 
-
-}
-
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
 
   return (
     <div className="flex h-screen">
@@ -109,7 +116,7 @@ const emptyNote : Note ={
                     </a>
 
                     <button
-                     onClick={() => openCreateNote(emptyNote)}
+                      onClick={() => openCreateNote(emptyNote)}
                       className="flex items-center px-4 py-2.5 text-sm font-medium transition-all duration-200 text-white bg-[#3C6997] rounded-lg w-full"
                     >
                       <svg
@@ -147,31 +154,13 @@ const emptyNote : Note ={
                   <hr className="border-gray-200" />
 
                   <nav className="flex-1 space-y-2">
-                    <a
-                      href="#"
-                      className="flex items-center px-4 py-2.5 text-sm font-medium transition-all duration-200 text-gray-800 hover:text-white rounded-lg hover:bg-[#3C6997] group"
+                    <button
+                      onClick={() => handleLogout()}
+                      className="flex items-center bg-red-200 px-4 w-full py-2.5 text-sm font-medium transition-all duration-200 text-gray-800 hover:text-white rounded-lg hover:bg-red-500"
                     >
-                      <svg
-                        className="flex-shrink-0 w-5 h-5 mr-4"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                        />
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                      </svg>
-                      Settings
-                    </a>
+                      <BiLogOutCircle className=" ext-2xl flex-shrink-0 w-5 h-5 mr-4" />
+                      <span>Logout</span>
+                    </button>
                   </nav>
                 </div>
               </div>
