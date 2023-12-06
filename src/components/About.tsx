@@ -37,11 +37,11 @@ const About = () => {
           Maybe its an important thought, a shopping list, or
           even a cooking recipe your grandma taught you. Anything—you can save
           it in this app. You can even add categories to them and file them away
-          when you don't need them.
+          when you dont need them.
           <br/>
           <br/>
           This is an application made by me, Jeremias Oviedo, as part of a
-            small project that I'm working on. This project doesn't have any
+            small project that Im working on. This project doesnt have any
             other value than my own learning and enjoyment, and its purpose is
             to be a playground where I can learn things and apply them.
         </span>
