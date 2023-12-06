@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { DashboardSidebar, DashboardContent } from "@/components";
 import { useAuth } from "../../components/AuthProvider";
+import { LargeNumberLike } from "crypto";
 
 interface DashboardProps {}
 
@@ -21,6 +22,11 @@ export type Note = {
   updateDate: string;
 };
 
+export type NoteCreationDto = {
+title: string,
+content: string,
+categories: number[]
+}
 export type Links = {
   next: string;
   previous: string;

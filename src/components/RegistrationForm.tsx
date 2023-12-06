@@ -7,6 +7,7 @@ import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+
 const signUpSchema = z
   .object({
     firstName: z.string(),

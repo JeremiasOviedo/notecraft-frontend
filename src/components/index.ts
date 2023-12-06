@@ -9,6 +9,7 @@ import AuthProvider from "./AuthProvider";
 import DashboardSidebar from "./DashboardSidebar";
 import DashboardContent from "./DashboardContent";
 import DeleteNoteModal from "./DeleteNoteModal";
+import CreateNoteComponent from "./CreateNoteComponent";
 
 export {
   Hero,
@@ -21,5 +22,6 @@ export {
   AuthProvider,
   DashboardSidebar,
   DashboardContent,
-  DeleteNoteModal
+  DeleteNoteModal,
+  CreateNoteComponent
 };

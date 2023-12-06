@@ -2,15 +2,16 @@
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import type { Note } from '@/app/dashboard/page'
 
 interface DeleteNoteModalProps{
     open: boolean;
-    idNote: number | null;
+    note: Note | {};
     closeDeleteModal: () => void;
     handleDeleteNote: (idNote: number) => void
 }
 
-export default function DeleteNoteModal({open,idNote, handleDeleteNote,closeDeleteModal}: DeleteNoteModalProps) {
+export default function DeleteNoteModal({open,note, handleDeleteNote,closeDeleteModal}: DeleteNoteModalProps) {
 
 
   const cancelButtonRef = useRef(null)
@@ -63,7 +64,7 @@ export default function DeleteNoteModal({open,idNote, handleDeleteNote,closeDele
                   <button
                     type="button"
                     className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                    onClick={() => handleDeleteNote(idNote)}
+                    onClick={() => handleDeleteNote(note.idNote)}
                   >
                     Delete
                   </button>
