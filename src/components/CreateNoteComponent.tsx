@@ -24,6 +24,7 @@ import {
   FaUndo,
   FaRedo,
   FaQuoteLeft,
+  FaSpinner,
 } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import type { Note, NoteCreationDto } from "@/app/dashboard/page";
@@ -33,12 +34,14 @@ interface CreateNotePros {
   note: Note;
   open: boolean;
   closeCreateNote: () => void;
+  updateNotes: () => void
 }
 
 const CreateNoteComponent = ({
   note,
   open,
   closeCreateNote,
+  updateNotes,
 }: CreateNotePros) => {
   const [serverError, setServerError] = useState<string | null>(null);
   const [content, setContent] = useState(note.content);
@@ -93,6 +96,7 @@ const CreateNoteComponent = ({
   };
 
   const onSubmit = async (data: FieldValues) => {
+    
     const newNote: NoteCreationDto = {
       title: data.title,
       content: data.content,
@@ -102,11 +106,14 @@ const CreateNoteComponent = ({
     try {
       var url: string = "";
 
-      if (note.idNote) {
+      if (!isNaN(note.idNote) ) {
         url = `http://localhost:8000/notes/${note.idNote}`;
       } else {
         url = "http://localhost:8000/notes";
       }
+
+      console.log("using url: ", url)
+      console.log("sending data: " , newNote)
 
       const response = await fetch(url, {
         method: "POST",
@@ -117,9 +124,14 @@ const CreateNoteComponent = ({
         },
       });
 
-      const jsonResponse = await response.json();
+      if(response.ok){
+        const jsonResponse = await response.json();
+        updateNotes()
+        closeCreateNote();
+      }
 
-      console.log(jsonResponse);
+      
+
     } catch (error) {
       console.log(error);
     }
@@ -140,28 +152,32 @@ const CreateNoteComponent = ({
             onChange={(e) => setTitle(e.target.value)}
             className="text-2xl text-center bg-white p-4"
           />
-          <div className="overflow-y-auto flex flex-col h-full bg-white">
+          <div className="overflow-y-auto flex flex-col h-full bg-white p-4">
             <EditorContent className="h-full" editor={editor} />
           </div>
           <input {...register("content")} type="text" className="hidden" />
 
           <div className="flex justify-around mb-11">
-            <div className= 'flex w-1/4'>
+            <div className="flex w-1/3">
               <button
                 onClick={closeCreateNote}
-                className="flex rounded-lg p-3  sm:w-56  text-center bg-red-500 text-white text-lg font-semibold justify-center "
+                className="flex rounded-lg p-3  w-96  text-center bg-red-500 text-white text-lg font-semibold justify-center "
               >
                 Cancel
               </button>
             </div>
-            <div className='flex w-1/4'>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="flex rounded-lg p-3  sm:w-56  text-center bg-[#3C6997] text-white text-lg font-semibold justify-center hover:opacity-90 "
-            >
-              Save
-            </button>
+            <div className="flex w-1/3">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="flex rounded-lg p-3  w-96  text-center bg-[#3C6997] text-white text-lg font-semibold justify-center hover:opacity-90 "
+              >
+                {isSubmitting === false ? (
+                  "Save"
+                ) : (
+                  <FaSpinner className="animate-spin" />
+                )}
+              </button>
             </div>
           </div>
         </form>

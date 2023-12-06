@@ -3,9 +3,27 @@
 import { SiDeepnote } from "react-icons/si";
 import React, { useState } from "react";
 import { FaBars, FaTimes, FaChevronRight, FaChevronLeft } from "react-icons/fa";
+import type { Note, NoteCreationDto } from "@/app/dashboard/page";
 
-const DashboardSidebar: React.FC = () => {
+interface SidebarProps {
+openCreateNote : (note: Note) => void;
+}
+
+const DashboardSidebar = ({openCreateNote}:SidebarProps) => {
   const [nav, setNav] = useState(false);
+
+const emptyNote : Note ={
+  idNote: Number.NaN,
+  title:'Create Note',
+  content: 'Create Content',
+  categories: [{idCategory: 1, categoryName:"general"}],
+  isActive: false,
+  creationDate: ' ',
+  updateDate: ' ',
+
+
+}
+
 
   return (
     <div className="flex h-screen">
@@ -21,7 +39,11 @@ const DashboardSidebar: React.FC = () => {
                   onClick={() => setNav(!nav)}
                   className="cursor-pointer text-gray-800 pl-6"
                 >
-                  {nav ? <FaChevronRight  className='text-white' />  : <FaChevronLeft />}
+                  {nav ? (
+                    <FaChevronRight className="text-white" />
+                  ) : (
+                    <FaChevronLeft />
+                  )}
                 </div>
               </div>
               <div className="px-4 mt-8">
@@ -86,9 +108,9 @@ const DashboardSidebar: React.FC = () => {
                       Home
                     </a>
 
-                    <a
-                      href="#"
-                      className="flex items-center px-4 py-2.5 text-sm font-medium transition-all duration-200 text-white bg-[#3C6997] rounded-lg"
+                    <button
+                     onClick={() => openCreateNote(emptyNote)}
+                      className="flex items-center px-4 py-2.5 text-sm font-medium transition-all duration-200 text-white bg-[#3C6997] rounded-lg w-full"
                     >
                       <svg
                         className="flex-shrink-0 w-5 h-5 mr-4"
@@ -115,7 +137,7 @@ const DashboardSidebar: React.FC = () => {
                         </g>
                       </svg>
                       New Note
-                    </a>
+                    </button>
                   </nav>
 
                   <hr className="border-gray-200" />
@@ -162,7 +184,7 @@ const DashboardSidebar: React.FC = () => {
           onClick={() => setNav(!nav)}
           className="cursor-pointer p-4  text-gray-800 flex justify-center text-2xl h-fit absolute"
         >
-          {nav ?  <FaChevronRight  className='text-white' />  : <FaChevronLeft/>}
+          {nav ? <FaChevronRight className="text-white" /> : <FaChevronLeft />}
         </div>
       )}
     </div>

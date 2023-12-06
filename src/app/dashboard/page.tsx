@@ -23,21 +23,25 @@ export type Note = {
 };
 
 export type NoteCreationDto = {
-title: string,
-content: string,
-categories: number[]
-}
+  title: string;
+  content: string;
+  categories: number[];
+};
 export type Links = {
   next: string;
   previous: string;
 };
+
+const emptyNote = {} as Note;
 
 const Dashboard: React.FC<DashboardProps> = () => {
   const { token, logout } = useAuth();
   const [notes, setNotes] = useState<Note[]>([]);
   const [links, setLinks] = useState<Links>({ next: "", previous: "" });
   const [pageNumber, setPageNumber] = useState<number>(1);
-  const [reRender, setReRender] = useState<number>(0)
+  const [selectedNote, setSelectedNote] = useState<Note>({} as Note);
+  const [createNoteOpen, setCreateNoteOpen] = useState(false);
+  const [reRender, setReRender] = useState<number>(0);
 
   const [currentPage, setCurrentPage] = useState<string>("/notes?page=0");
 
@@ -67,8 +71,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
     getNotes();
   }, [token, currentPage, reRender]);
 
-  const updateNotes = (updatedNotes : Note[]) => {
-    setNotes(updatedNotes);
+  const updateNotes = () => {
     setReRender(reRender + 1);
   };
 
@@ -78,16 +81,42 @@ const Dashboard: React.FC<DashboardProps> = () => {
     console.log(newPage);
   };
 
+  const openCreateNote = (note: Note) => {
+   
+    setSelectedNote((prevNote) => {
+      return note
+    });
+    setCreateNoteOpen(false);
+    setCreateNoteOpen(true);
+  };
+
+  const closeCreateNote = () => {
+    setCreateNoteOpen(false);
+    setSelectedNote(emptyNote);
+  };
+
+  const selectNote = (note : Note) =>{
+    setSelectedNote(note)
+  }
+
   return (
-    <main className="w-screen h-screen relative  m-0 overflow-hidden scroll-smooth snap-y" style={{ backgroundImage: "url(/background.jpg)" }}>
+    <main
+      className="w-screen h-screen relative  m-0 overflow-hidden scroll-smooth snap-y"
+      style={{ backgroundImage: "url(/background.jpg)" }}
+    >
       <div className="flex w-screen h-full bg-cover bg-center m-0 pr-0">
-        <DashboardSidebar />
+        <DashboardSidebar openCreateNote={openCreateNote} />
         <DashboardContent
           notes={notes}
           links={links}
           handlePageChange={handlePageChange}
           pageNumber={pageNumber}
-          updateNotes = {updateNotes}
+          updateNotes={updateNotes}
+          openCreateNote={openCreateNote}
+          closeCreateNote={closeCreateNote}
+          createNoteOpen={createNoteOpen}
+          selectedNote={selectedNote}
+          selectNote={selectNote}
         />
       </div>
     </main>

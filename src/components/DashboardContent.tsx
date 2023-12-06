@@ -17,7 +17,12 @@ interface ContentProps {
   links: Links;
   pageNumber: number;
   handlePageChange: (newPage: string, changePage: number) => void;
-  updateNotes: (updatedNotes: Note[]) => void;
+  updateNotes: () => void;
+  openCreateNote: (note: Note) => void;
+  closeCreateNote: () => void;
+  createNoteOpen: boolean;
+  selectedNote: Note;
+  selectNote: (note: Note) => void;
 }
 
 const emptyNote = {} as Note;
@@ -28,6 +33,11 @@ const DashboardContent = ({
   handlePageChange,
   pageNumber,
   updateNotes,
+  openCreateNote,
+  closeCreateNote,
+  createNoteOpen,
+  selectedNote,
+  selectNote,
 }: ContentProps) => {
   const { token } = useAuth();
   const [dropdownVisible, setDropdownVisible] = useState<number | null>(null);
@@ -35,32 +45,17 @@ const DashboardContent = ({
   const toggleDropdown = (idNote: number) => {
     setDropdownVisible((prevIdNote) => (prevIdNote === idNote ? null : idNote));
   };
-  const [selectedNote, setSelectedNote] = useState<Note>({} as Note);
 
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [createNoteOpen, setCreateNoteOpen] = useState(false);
 
   const openDeleteModal = (note: Note) => {
-    setSelectedNote(note);
+    selectNote(note);
     setDeleteModalOpen(true);
   };
 
   const closeDeleteModal = () => {
     setDeleteModalOpen(false);
-    setSelectedNote(emptyNote);
-  };
-
-  const openCreateNote = (note: Note) => {
-    setSelectedNote((prevNote) => {
-      return note;
-    });
-    setCreateNoteOpen(false);
-    setCreateNoteOpen(true);
-  };
-
-  const closeCreateNote = () => {
-    setCreateNoteOpen(false);
-    setSelectedNote(emptyNote);
+    selectNote(emptyNote);
   };
 
   const handleNoteDelete = async (idNote: number | null) => {
@@ -73,12 +68,7 @@ const DashboardContent = ({
       });
       if (response.ok) {
         console.log("deleted succesfully");
-
-        const updatedNotes: Note[] = notes.filter(function (note) {
-          return note.idNote !== idNote;
-        });
-        console.log(updatedNotes);
-        updateNotes(updatedNotes);
+        updateNotes();
       }
     } catch (error) {
       console.log(error);
@@ -90,45 +80,55 @@ const DashboardContent = ({
   const listNotes = notes.map((note) => (
     <div
       key={note.idNote}
-      className="flex flex-col bg-white p-4 pb-0 shadow-md w-full lg:w-80 max-h-[26rem] justify-between m-1"
+      className="flex flex-col bg-white p-4 pb-0 shadow-md w-full lg:w-80 max-h-[26rem] justify-between "
     >
-      <div className="flex flex-row justify-between">
-        {dropdownVisible === note.idNote ? (
-          <button className="mb-0" onClick={() => toggleDropdown(note.idNote)}>
-            <FaEllipsisV />
-          </button>
-        ) : (
-          <button className="mb-0" onClick={() => toggleDropdown(note.idNote)}>
-            <FaEllipsisH />
-          </button>
-        )}
+      <div className="flex flex-col h-full shrink">
+        <div className="flex flex-row justify-between">
+          {dropdownVisible === note.idNote ? (
+            <button
+              className="mb-0"
+              onClick={() => toggleDropdown(note.idNote)}
+            >
+              <FaEllipsisV />
+            </button>
+          ) : (
+            <button
+              className="mb-0"
+              onClick={() => toggleDropdown(note.idNote)}
+            >
+              <FaEllipsisH />
+            </button>
+          )}
 
-        {dropdownVisible === note.idNote && (
-          <div className="flex gap-4">
-            <button
-              className="text-sky-500 text-2xl font-bold"
-              onClick={() => openCreateNote(note)}
-            >
-              <FaRegEye />
-            </button>
-            <button
-              className="text-red-500 text-2xl font-bold"
-              onClick={() => openDeleteModal(note)}
-            >
-              <RiChatDeleteFill />
-            </button>
-          </div>
-        )}
+          {dropdownVisible === note.idNote && (
+            <div className="flex gap-4">
+              <button
+                className="text-sky-500 text-2xl font-bold"
+                onClick={() => openCreateNote(note)}
+              >
+                <FaRegEye />
+              </button>
+              <button
+                className="text-red-500 text-2xl font-bold"
+                onClick={() => openDeleteModal(note)}
+              >
+                <RiChatDeleteFill />
+              </button>
+            </div>
+          )}
+        </div>
+        <div className= 'flex flex-col justify-evenly h-full'>
+          <span className="text-center m-1 text-slate-900 font-bold text-lg justify-self-start">
+            {note.title}
+          </span>
+          <p className="text-slate-800 text-ellipsis overflow-clip h-4/6  ">
+            {note.content}
+          </p>
+          <span className="flex text-gray-600 text-sm font-light font-sans self-end justify-self-start">
+                {note.creationDate}
+              </span>
+        </div>
       </div>
-      <span className="text-center m-1 text-slate-900 font-bold text-lg">
-        {note.title}
-      </span>
-      <p className="text-slate-800 text-ellipsis overflow-hidden h-fit ">
-        {note.content}
-      </p>
-      <span className="text-gray-600 text-sm  mt-2 font-light font-sans self-end justify-self-end">
-        {note.creationDate}
-      </span>
     </div>
   ));
 
@@ -136,10 +136,11 @@ const DashboardContent = ({
   const isNextDisabled = !links.next;
 
   return (
-    <div className="flex">
+    <div className="flex w-screen">
       <div
         className={
-          "flex flex-col w-full " + (createNoteOpen ? "hidden md:flex flex-col" : "display")
+          "flex flex-col w-full overflow-auto " +
+          (createNoteOpen ? "hidden md:flex flex-col " : "display w-full")
         }
       >
         <div className="w-full bg-transparent  shadow-md flex justify-center">
@@ -162,8 +163,8 @@ const DashboardContent = ({
           </div>
         </div>
 
-        <div className="h-full w-full bg-transparent  px-2 overflow-auto items-center align-center flex mt-2 ">
-          <div className=" flex flex-col md:flex-row w-full gap-8 flex-shrink flex-wrap justify-evenly">
+        <div className="w-full bg-transparent px-2 oitems-center align-center flex mt-2 ">
+          <div className=" flex flex-col md:flex-row w-full gap-8 flex-shrink flex-wrap overflow-y-auto justify-evenly">
             {listNotes}
           </div>
         </div>
@@ -179,6 +180,7 @@ const DashboardContent = ({
         open={createNoteOpen}
         note={selectedNote}
         closeCreateNote={closeCreateNote}
+        updateNotes={updateNotes}
       />
     </div>
   );
