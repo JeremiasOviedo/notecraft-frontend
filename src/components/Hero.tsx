@@ -18,7 +18,7 @@ const Hero: React.FC = () => {
           <h1>Welcome to Notecraft.</h1>
         </span>
         <span className="font-sans font-bold text-[22px] text-center mt-8">
-          <Button to="/auth">Get Started!</Button>
+          <Button to="/auth/register">Get Started!</Button>
         </span>
       </div>
     </div>
