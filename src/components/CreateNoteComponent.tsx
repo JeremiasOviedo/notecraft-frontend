@@ -7,7 +7,6 @@ import {
   useEditor,
   EditorContent,
 } from "@tiptap/react";
-import type {Editor} from "@tiptap/react"
 import Underline from "@tiptap/extension-underline";
 import ListItem from "@tiptap/extension-list-item";
 import BulletList from "@tiptap/extension-bullet-list";
@@ -82,7 +81,7 @@ const CreateNoteComponent = ({
     },
   });
 
-  const handleContentChange = ({ editor }: { editor: Editor | null }) => {
+  const handleContentChange = ({ editor }: { editor : any }) => {
     setValue("content", editor?.getText());
   };
 
