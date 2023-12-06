@@ -48,7 +48,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
   const getNotes = useEffect(() => {
     const getNotes = async () => {
       try {
-        const response = await fetch(`https://54.233.123.195:443${currentPage}`, {
+        const response = await fetch(`http://54.233.123.195:8000${currentPage}`, {
           method: "GET",
           headers: {
             authorization: `Bearer ${token}`,

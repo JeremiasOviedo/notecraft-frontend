@@ -61,7 +61,7 @@ const RegistrationForm = () => {
         password: data.password,
       };
 
-      const response = await fetch("https://54.233.123.195:443/auth/register", {
+      const response = await fetch("http://54.233.123.195:8000/auth/register", {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
