@@ -58,7 +58,7 @@ const DashboardContent = ({
     selectNote(emptyNote);
   };
 
-  const handleNoteDelete = async (idNote: number | null) => {
+  const handleNoteDelete = async (idNote: number) => {
     try {
       const response = await fetch(`http://54.233.123.195:8000/${idNote}`, {
         method: "DELETE",

@@ -6,7 +6,7 @@ import type { Note } from '@/app/dashboard/page'
 
 interface DeleteNoteModalProps{
     open: boolean;
-    note: Note | {};
+    note: Note;
     closeDeleteModal: () => void;
     handleDeleteNote: (idNote: number) => void
 }
