@@ -40,7 +40,7 @@ const LoginForm = () => {
         password: data.password,
       };
 
-      const response = await fetch("http://18.229.134.13:8000/auth/login", {
+      const response = await fetch("http://18.231.115.87:8000/auth/login", {
         method: "POST",
         mode:'no-cors',
         body: JSON.stringify(credentials),
