@@ -42,7 +42,6 @@ const LoginForm = () => {
 
       const response = await fetch("https://cheroquibackend.hopto.org/auth/login", {
         method: "POST",
-        mode:'no-cors',
         body: JSON.stringify(credentials),
         headers: {
           "Content-type": "application/json",
