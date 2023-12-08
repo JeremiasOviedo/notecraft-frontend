@@ -104,9 +104,9 @@ const CreateNoteComponent = ({
       var url: string = "";
 
       if (!isNaN(note.idNote)) {
-        url = `http://18.231.115.87:8000/${note.idNote}`;
+        url = `http://18.231.115.87:443/${note.idNote}`;
       } else {
-        url = "http://18.231.115.87:8000/notes";
+        url = "http://18.231.115.87:443/notes";
       }
 
       console.log("using url: ", url);

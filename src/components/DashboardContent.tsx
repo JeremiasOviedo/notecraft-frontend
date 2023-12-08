@@ -60,7 +60,7 @@ const DashboardContent = ({
 
   const handleNoteDelete = async (idNote: number) => {
     try {
-      const response = await fetch(`http://18.231.115.87:8000/${idNote}`, {
+      const response = await fetch(`http://18.231.115.87:443/${idNote}`, {
         method: "DELETE",
         headers: {
           authorization: `Bearer ${token}`,
