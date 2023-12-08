@@ -61,7 +61,7 @@ const RegistrationForm = () => {
         password: data.password,
       };
 
-      const response = await fetch("https://18.231.115.87:443/auth/register", {
+      const response = await fetch("https://cheroquibackend.hopto.org/auth/register", {
         method: "POST",
         body: JSON.stringify(user),
         headers: {

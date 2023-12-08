@@ -104,9 +104,9 @@ const CreateNoteComponent = ({
       var url: string = "";
 
       if (!isNaN(note.idNote)) {
-        url = `https://18.231.115.87:443/${note.idNote}`;
+        url = `https://cheroquibackend.hopto.org/${note.idNote}`;
       } else {
-        url = "https://18.231.115.87:443/notes";
+        url = "https://cheroquibackend.hopto.org/notes";
       }
 
       console.log("using url: ", url);

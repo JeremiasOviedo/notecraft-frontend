@@ -40,7 +40,7 @@ const LoginForm = () => {
         password: data.password,
       };
 
-      const response = await fetch("https://18.231.115.87:443/auth/login", {
+      const response = await fetch("https://cheroquibackend.hopto.org/auth/login", {
         method: "POST",
         mode:'no-cors',
         body: JSON.stringify(credentials),
