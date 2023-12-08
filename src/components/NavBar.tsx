@@ -16,7 +16,6 @@ const NavBar: React.FC = () => {
           <a
             className="link-underline link-underline-black"
             href=""
-            target="_blank"
             rel="noreferrer"
           >
             <div className="flex">
